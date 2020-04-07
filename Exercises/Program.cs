@@ -274,7 +274,6 @@ namespace Exercises
             
             Console.WriteLine("Enter number two: ");
             int numberTwo = int.Parse(Console.ReadLine());
-                
 
             if (int.TryParse(answer, out _))
             {
