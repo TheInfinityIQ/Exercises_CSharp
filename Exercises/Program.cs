@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 /*
 =============================================================================================
@@ -467,41 +468,45 @@ namespace Exercises
             //Sample input: C
             //Expected output: Average
 
-            Dictionary<char, string> grades = new Dictionary<char, string>()
-            {
-                ['A'] = "Excellent",
-                ['B'] = "Good",
-                ['C'] = "Average",
-                ['D'] = "Fail",
-            };
+            //Dictionary<char, string> grades = new Dictionary<char, string>()
+            //{
+            //    ['A'] = "Excellent",
+            //    ['B'] = "Good",
+            //    ['C'] = "Average",
+            //    ['D'] = "Fail",
+            //};
 
-            string gradeDescription;
+            //string gradeDescription;
 
 
-            foreach (KeyValuePair<char, string> entry in grades)
-            {
-                Console.WriteLine($"{ entry.Key } { entry.Value }");
-            }
-            Console.WriteLine("Enter a character grade value: ");
+            //foreach (KeyValuePair<char, string> entry in grades)
+            //{
+            //    Console.WriteLine($"{ entry.Key } { entry.Value }");
+            //}
+            //Console.WriteLine("Enter a character grade value: ");
 
-            while (!grades.TryGetValue(char.ToUpper(Console.ReadKey().KeyChar), out gradeDescription))
-            {
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.Red;
-                foreach (KeyValuePair<char, string> entry in grades)
-                {
-                    Console.WriteLine($"{ entry.Key } { entry.Value }");
-                }
-            }
+            //while (!grades.TryGetValue(char.ToUpper(Console.ReadKey().KeyChar), out gradeDescription))
+            //{
+            //    Console.WriteLine();
+            //    Console.ForegroundColor = ConsoleColor.Red;
+            //    foreach (KeyValuePair<char, string> entry in grades)
+            //    {
+            //        Console.WriteLine($"{ entry.Key } { entry.Value }");
+            //    }
+            //}
 
-            Console.ResetColor();
-            Console.WriteLine();
-            Console.WriteLine(gradeDescription);
+            //Console.ResetColor();
+            //Console.WriteLine();
+            //Console.WriteLine(gradeDescription);
 
             //8 - Write a C# console app that given the array below, removes all duplicated items and returns a new array in the same sequential order as the old array (minus duplicates).
-            //Sample array: ["Student", "Developer" "Great", "Developer"]
+            //Sample array: ["Student", "Developer", "Great", "Developer"]
             //Expected output: ["Student", "Great", "Developer"]
 
+            //string[] duplicateArray = { "Student", "Developer", "Great", "Developer" };
+
+            //string[] nonDuplicateArray = duplicateArray.Distinct().ToArray();
+            //Console.WriteLine(string.Join(", ", nonDuplicateArray));
 
         }
     }
