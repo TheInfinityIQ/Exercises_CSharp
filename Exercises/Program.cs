@@ -512,24 +512,84 @@ namespace Exercises
             //Sample input: Internship
             //Expected output: 3
 
-            char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'y' };
-            int numOfVowels = 0;
+            //char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'y' };
+            //int numOfVowels = 0;
 
-            Console.WriteLine("Enter some crap: ");
-            string input = Console.ReadLine();
+            //Console.WriteLine("Enter some crap: ");
+            //string input = Console.ReadLine();
 
-            foreach (char letter in input)
+            //foreach (char letter in input)
+            //{
+            //    foreach (char vowel in vowels)
+            //    {
+            //        if (letter == vowel)
+            //        {
+            //            numOfVowels++;
+            //        } 
+            //    }
+            //}
+
+            //Console.WriteLine($"You have {numOfVowels} vowels.");
+
+            //10 - Write a C# console app that accepts a username and password. If the user enters the username/password correctly display a success message. If the user enters the username/password incorrectly display an error message. After 3 invalid attemps stop the user from trying and display a final error message.
+            //Sample input username: user1
+            //Sample input password: password1
+            //Expected output if correct: Password entered sucessfully!
+            //Expected output if incorrect: Username and/ or password are incorrect.
+            //Expected output after 3 incorrect attemps: You've entered the username and/or password incorrect 3 times. Try again later.
+            //* Bonus: Display a hint to the user after the first incorrect attempt.
+
+            int maxTries = 3;
+            int attempts = 1;
+            bool lastTry = false;
+            bool correctCredentials = false;
+            string passwordInput = "meme";
+            string usernameInput = "kill me god, please.";
+
+            const string username = "b";
+            const string password = "a";
+
+            do
             {
-                foreach (char vowel in vowels)
+                //Gets input
+                if (!correctCredentials && !lastTry)
                 {
-                    if (letter == vowel)
-                    {
-                        numOfVowels++;
-                    } 
+                    Console.Write("Enter your username: ");
+                    usernameInput = Console.ReadLine();
+                    Console.WriteLine();
+                    Console.Write("Enter your password: ");
+                    passwordInput = Console.ReadLine();
+                    Console.WriteLine();
                 }
-            }
+                else if (!correctCredentials && lastTry)
+                {
+                    Console.WriteLine("This is your last try\n");
+                    Console.Write("Enter your username: ");
+                    usernameInput = Console.ReadLine();
+                    Console.WriteLine();
+                    Console.Write("Enter your password: ");
+                    passwordInput = Console.ReadLine();
+                    Console.WriteLine();
+                }
 
-            Console.WriteLine($"You have {numOfVowels} vowels.");
+                //Increments
+                attempts++;
+
+                //Tests if last try and correct credentials
+                lastTry = attempts == maxTries;
+                correctCredentials = passwordInput == password && usernameInput == username;
+
+                //Prints out final statement
+                if (correctCredentials)
+                {
+                    Console.WriteLine("Password entered sucessfully!");
+                }
+                else
+                {
+                    Console.WriteLine("Username and/or password are incorrect.");
+                }
+
+            } while (attempts <= maxTries && !correctCredentials);
         }
     }
 }
