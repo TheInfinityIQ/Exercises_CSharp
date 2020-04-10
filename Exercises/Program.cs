@@ -508,6 +508,28 @@ namespace Exercises
             //string[] nonDuplicateArray = duplicateArray.Distinct().ToArray();
             //Console.WriteLine(string.Join(", ", nonDuplicateArray));
 
+            //9 - Write a C# console app that accepts a string and returns the numbers (count) of vowels contained within it.
+            //Sample input: Internship
+            //Expected output: 3
+
+            char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'y' };
+            int numOfVowels = 0;
+
+            Console.WriteLine("Enter some crap: ");
+            string input = Console.ReadLine();
+
+            foreach (char letter in input)
+            {
+                foreach (char vowel in vowels)
+                {
+                    if (letter == vowel)
+                    {
+                        numOfVowels++;
+                    } 
+                }
+            }
+
+            Console.WriteLine($"You have {numOfVowels} vowels.");
         }
     }
 }
