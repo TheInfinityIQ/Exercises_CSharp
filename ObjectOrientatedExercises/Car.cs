@@ -32,5 +32,11 @@ namespace ObjectOrientatedExercises
             this.Year = year;
             this.Value = value;
         }
+
+        // Methods
+        public void Drive()
+        {
+            Console.WriteLine($"{Model} - Vroom! Vroom! Vroom!");
+        }
     }
 }
