@@ -38,5 +38,11 @@ namespace ObjectOrientatedExercises
         {
             Console.WriteLine($"{Model} - Vroom! Vroom! Vroom!");
         }
+
+        public void PrintCarInfo()
+        {
+            Console.WriteLine("----------------------------------------\nCar Shit\n----------------------------------------\n");
+            Console.WriteLine($"Make: {Make}\nModel: {Model}\nRegistration: {Registration}\nYear: {Year}\nValue: ${Value}");
+        }
     }
 }

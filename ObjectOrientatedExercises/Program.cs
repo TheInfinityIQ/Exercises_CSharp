@@ -21,7 +21,18 @@ namespace ObjectOrientatedExercises
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
+            Car fordTruck = new Car("Ford", "F-150", "Ford Sellers", 1997, 2500.50m);
+            fordTruck.PrintCarInfo();
+            fordTruck.Drive();
+
+            Car chevyTruck = new Car("Chevy", "Silverado", "Chevy Sellers", 1998, 5.50m);
+            chevyTruck.PrintCarInfo();
+            chevyTruck.Drive();
+
+            Car fordCar = new Car("Ford", "Taurus", "Ford Sellers Inc.", 2016, 10050.56m);
+            fordCar.PrintCarInfo();
+            fordCar.Drive();
         }
     }
 }
