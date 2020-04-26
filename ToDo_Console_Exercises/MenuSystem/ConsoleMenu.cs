@@ -10,6 +10,17 @@ namespace ToDo_Console_Exercises.MenuSystem
         //Options within options
 
         public string Title { get; set; }
-        public List<ConsoleMenuOption> Option { get; set; }
+        public List<ConsoleMenuOption> Options { get; set; }
+
+        public ConsoleMenu(string title)
+        {
+            Title = title;
+            Options = new List<ConsoleMenuOption>();
+        }
+
+        public void DisplayMenu()
+        {
+            
+        }
     }
 }

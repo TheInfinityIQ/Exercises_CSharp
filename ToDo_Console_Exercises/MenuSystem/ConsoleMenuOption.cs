@@ -4,6 +4,7 @@ namespace ToDo_Console_Exercises.MenuSystem
 {
     class ConsoleMenuOption
     {
+
         //Title
         //Actions performed when option is executed
         //Description of Option
@@ -13,5 +14,12 @@ namespace ToDo_Console_Exercises.MenuSystem
         public string Define { get; set; }
         public string Selector { get; set; }
 
+        public ConsoleMenuOption(string title, string define, string selector, Action outcome)
+        {
+            Title = title;
+            Outcome = outcome;
+            Define = define;
+            Selector = selector;
+        }
     }
 }
