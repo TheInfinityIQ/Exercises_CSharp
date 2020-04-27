@@ -10,9 +10,9 @@ namespace ToDo_Console_Exercises.MenuSystem
         //Description of Option
         //Input needed to select Option
         public string Title { get; set; }
-        public Action Outcome { get; set; }
         public string Define { get; set; }
         public string Selector { get; set; }
+        public Action Outcome { get; set; }
 
         public ConsoleMenuOption(string title, string define, string selector, Action outcome)
         {

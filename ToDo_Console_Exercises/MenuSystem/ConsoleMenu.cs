@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace ToDo_Console_Exercises.MenuSystem
@@ -20,7 +21,46 @@ namespace ToDo_Console_Exercises.MenuSystem
 
         public void DisplayMenu()
         {
+            for (int i = 0; i < this.Options.Count; i++)
+            {
+                Console.WriteLine($"{this.Options[i].Selector}. -=- {this.Options[i].Title}");
+            }
+        }
+        public ConsoleMenuOption InputFromMenu(bool isDisplayedAlready)
+        {
             
+            bool validInput = false;
+            ConsoleMenuOption discMenuOption; //Discovered menu option
+
+            do
+            {
+                
+                if (!isDisplayedAlready)
+                {
+                    DisplayMenu();
+                }
+                
+                //Makes Things Pretty
+                Console.WriteLine();
+
+                string input = Console.ReadLine();
+                
+                discMenuOption = FindConsoleMenuOptionByUsingSelector(input);
+
+                if (discMenuOption != null)
+                {
+                    validInput = true;
+                }
+
+            } while (!validInput);
+
+            return discMenuOption; //Selected ConsoleMenuOption
+
+        }
+
+        private ConsoleMenuOption FindConsoleMenuOptionByUsingSelector(string selector)
+        {
+            return this.Options.Find(option => option.Selector == selector);
         }
     }
 }

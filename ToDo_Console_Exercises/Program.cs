@@ -28,48 +28,42 @@ namespace ToDo_Console_Exercises
 {
     class Program
     {
+
+        //Fields
+        private static ConsoleMenu _mainMenu;
         //static property that holds all the tasks
-        public static List<Task> ListOfTasks { get; set; }
+        private static List<Task> ListOfTasks { get; set; }
 
         static Program()
         {
             ListOfTasks = new List<Task>();
+            _mainMenu = new ConsoleMenu("Main Menu");
         }
 
         static void Main(string[] args)
         {
-            ConsoleMenu mainMenu = new ConsoleMenu("Main Menu");
+            #region ConsoleMenuOptionCreation
+            ConsoleMenuOption[] actionOptions
+            = {
+                new ConsoleMenuOption("Add Defined Task", "Invokes method AddTask", "1", AddTask),
+                new ConsoleMenuOption("Edit Selected Task", "Invokes to method EditTask", "2", EditTask),
+                new ConsoleMenuOption("Remove Selected Task", "Invokes to method RemoveTask", "3", RemoveTask),
+                new ConsoleMenuOption("Remove All Tasks From List", "Invokes to method RemoveAllTask", "4", RemoveAllTask),
+                new ConsoleMenuOption("List All Tasks", "Invokes to method listAllTaskOptions", "5", ListAllTasks),
+                new ConsoleMenuOption("Exit Program", "Exits program", "6", () => Environment.Exit(0))
+            };
+            #endregion
 
-            ConsoleMenuOption listAllTasks = new ConsoleMenuOption("List All Tasks", "Will List All Tasks to the console.", "1", ListAllTasks);
-            mainMenu.Options.Add(listAllTasks);
+            _mainMenu.Options.AddRange(actionOptions);
 
-            for (int i = 0; i < mainMenu.Options.Count; i++)
-            {
-                Console.WriteLine($"Option {mainMenu.Options[i].Selector} will allow you to {mainMenu.Options[i].Title}");
-            }
-
-            //1 - Allow the user to add tasks. 
-            //2 - Allow the user to edit tasks. 
-            //3 - Allow the user to remove a specific task. 
-            //4 - Allow the user to remove all tasks at once. 
-            //5 - List all the current tasks. 
-
-            //string lineSpam = new string('-', 10);
-            //Console.WriteLine("Welcome to Task-A-Do");
-
-            //Console.WriteLine("create task");
-            //Task t1 = new Task("my first task", 0, 1);
-            //ListOfTasks.Add(t1);
-            //Task t2 = new Task("my second task", 0, 9);
-            //ListOfTasks.Add(t2);
-
-            //ListAllTasks();
-            Console.ReadLine();
+            ConsoleMenuOption selectedOption = _mainMenu.InputFromMenu(false);
+            Console.WriteLine(); //Makes Things Pretty
+            Console.WriteLine(selectedOption.Title);
+            selectedOption.Outcome.Invoke();
         }
 
-
         //Get input from User
-        public static (string Title, string TimeDuration, string Priority, string Description) Input()
+        public static (string Title, string TimeDuration, string Priority, string Description) TaskInput()
         {
             Console.WriteLine($"Enter the {nameof(Task.Title)} of your Task: ");
             string title = Console.ReadLine();
@@ -87,29 +81,43 @@ namespace ToDo_Console_Exercises
             return taskInfo;
         }
 
-        //public static void findTask()
-        //{
-        //    ConsoleMenu taskMenu = new ConsoleMenu("Task Menu");
-        //    ConsoleMenuOption taskOption;
+        public static Task TaskSelector()
+        {
 
-        //    for (int i = 0; i < ListOfTasks.Count; i++)
-        //    {
-        //        taskOption = new ConsoleMenuOption(ListOfTasks[i].Title, ListOfTasks[i].Description, i.ToString(), null);
-        //        taskMenu.Options.Add(taskOption);
-        //    }
+            ConsoleMenu taskMenu = new ConsoleMenu("Task Menu");
+            ConsoleMenuOption taskOption;
 
+            Task task = null;
 
-        //    //Display all tasks to user 
-        //    //Assign each task to number 
-        //    //Get input 
-        //    //Locate and return 
-        //}
+            if (ListOfTasks.Count <= 0)
+            {
+                Console.WriteLine("No tasks found... returning to main menu.");
+                Console.WriteLine(); //Pretty lines
+                return null;
+            }
+
+            //Add tasks to the menu
+            for (int i = 0; i < ListOfTasks.Count; i++)
+            {
+
+                Task currentTask = ListOfTasks[i];
+
+                taskOption = new ConsoleMenuOption(currentTask.Title, currentTask.Description, i.ToString() /*Selector*/, () => task = currentTask);
+                taskMenu.Options.Add(taskOption);
+
+            }
+
+            ConsoleMenuOption selectedTaskFromTaskMenu = taskMenu.InputFromMenu(false);
+            selectedTaskFromTaskMenu.Outcome.Invoke();
+            return task;
+
+        }
 
         public static void AddTask()
         {
             Task task;
 
-            (string title, string timeDuration, string priority, string description) = Input();
+            (string title, string timeDuration, string priority, string description) = TaskInput();
 
             if (description == null)
             {
@@ -120,25 +128,50 @@ namespace ToDo_Console_Exercises
                 task = new Task(title, int.Parse(timeDuration), int.Parse(priority), description);
             }
             ListOfTasks.Add(task);
+            
             //Go back to menu
+            ConsoleMenuOption definedOption = _mainMenu.InputFromMenu(false);
+            definedOption.Outcome.Invoke();
         }
 
         public static void EditTask()
         {
-            //What task?
-            //What do you want to change task to?
+            Task selectedTask = TaskSelector();
+
+            if (selectedTask != null)
+            {
+                (string title, string timeDuration, string priority, string description) taskTuple = TaskInput();
+
+                selectedTask.Title = taskTuple.title;
+                selectedTask.TimeDuration = int.Parse(taskTuple.timeDuration);
+                selectedTask.Priority = int.Parse(taskTuple.priority);
+                selectedTask.Description = taskTuple.description;
+            }
+
+            ConsoleMenuOption definedOption = _mainMenu.InputFromMenu(false);
+            definedOption.Outcome.Invoke();
         }
+
+        //<Task1, Task2, Task3>
 
         public static void RemoveTask()
         {
-            //What task?
-            //ListOfTasks.Remove(t1)
+            Task selectedTask = TaskSelector();
+
+            if (selectedTask != null)
+                ListOfTasks.Remove(selectedTask);
+
+            ConsoleMenuOption definedOption = _mainMenu.InputFromMenu(false);
+            definedOption.Outcome.Invoke();
         }
 
         public static void RemoveAllTask()
         {
             ListOfTasks.Clear();
             Console.WriteLine("All tasks have been removed.");
+            
+            ConsoleMenuOption definedOption = _mainMenu.InputFromMenu(false);
+            definedOption.Outcome.Invoke();
         }
 
         public static void ListAllTasks()
@@ -149,6 +182,9 @@ namespace ToDo_Console_Exercises
                 string taskInfo = task.DisplayInfo();
                 Console.WriteLine(taskInfo);
             }
+            
+            ConsoleMenuOption definedOption = _mainMenu.InputFromMenu(false);
+            definedOption.Outcome.Invoke();
         }
     }
 }
