@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercises", "Exercises\Exer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectOrientatedExercises", "ObjectOrientatedExercises\ObjectOrientatedExercises.csproj", "{955AF518-49A9-42C7-9BFC-17BD61B24E93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo_Console_Exercises", "ToDo_Console_Exercises\ToDo_Console_Exercises.csproj", "{BA1B07CA-5DE8-4A71-905B-A256CA8231B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo_Console_Exercises", "ToDo_Console_Exercises\ToDo_Console_Exercises.csproj", "{BA1B07CA-5DE8-4A71-905B-A256CA8231B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator_Solo", "Calculator_Solo\Calculator_Solo.csproj", "{3744D576-129E-439E-BA6B-F12998F165B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{BA1B07CA-5DE8-4A71-905B-A256CA8231B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA1B07CA-5DE8-4A71-905B-A256CA8231B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA1B07CA-5DE8-4A71-905B-A256CA8231B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3744D576-129E-439E-BA6B-F12998F165B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3744D576-129E-439E-BA6B-F12998F165B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3744D576-129E-439E-BA6B-F12998F165B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3744D576-129E-439E-BA6B-F12998F165B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
