@@ -30,7 +30,7 @@ namespace ToDo_Console_Exercises.MenuSystem
         {
             
             bool validInput = false;
-            ConsoleMenuOption discMenuOption; //Discovered menu option
+            ConsoleMenuOption selectedMenuOption;
 
             do
             {
@@ -45,16 +45,16 @@ namespace ToDo_Console_Exercises.MenuSystem
 
                 string input = Console.ReadLine();
                 
-                discMenuOption = FindConsoleMenuOptionByUsingSelector(input);
+                selectedMenuOption = FindConsoleMenuOptionByUsingSelector(input);
 
-                if (discMenuOption != null)
+                if (selectedMenuOption != null)
                 {
                     validInput = true;
                 }
 
             } while (!validInput);
 
-            return discMenuOption; //Selected ConsoleMenuOption
+            return selectedMenuOption; //Selected ConsoleMenuOption
 
         }
 
