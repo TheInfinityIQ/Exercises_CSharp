@@ -18,5 +18,9 @@ namespace ToDo_Solo.MenuSystem
             Define = define;
             Selector = selector;
         }
+
+        public ConsoleMenuOption() : this(null, null, null, null)
+        {
+        }
     }
 }
